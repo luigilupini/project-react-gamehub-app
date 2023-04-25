@@ -23,11 +23,11 @@ interface GamesResponse {
 
 export default function useGames() {
   const [games, setGames] = useState<Game[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     // `AbortController` is a "built-in" browser API that allows us to `abort` a
     // fetch request if the user navigates away from the page before the request
     // has finished. This prevents the app from crashing. We can also use this
@@ -41,16 +41,16 @@ export default function useGames() {
       })
       .then((res) => {
         setGames(res.data.results);
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((err) => {
         // 👇🏻 We ignore the error if the request was canceled
         if (err instanceof CanceledError) return;
         setError(err.message);
-        setLoading(false);
+        setIsLoading(false);
       });
     return () => controller.abort(); // 👈🏻 We close/cleanup the controller here
   }, []);
 
-  return { games, loading, error };
+  return { games, isLoading, error };
 }

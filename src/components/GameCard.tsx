@@ -13,17 +13,15 @@ export default function GameCard({ game }: Props) {
     (platform) => platform.platform
   );
   return (
-    <>
-      <Card borderRadius={10} overflow="hidden">
-        <Image src={imageCropper(game.background_image)} />
-        <CardBody>
-          <Heading fontSize="xl">{game.name}</Heading>
-          <HStack justifyContent="space-between">
-            <PlatformIconList platforms={allPlatforms} />
-            <CriticScore score={game.metacritic} />
-          </HStack>
-        </CardBody>
-      </Card>
-    </>
+    <Card>
+      <Image src={imageCropper(game.background_image)} />
+      <CardBody>
+        <Heading fontSize="xl">{game.name}</Heading>
+        <HStack justifyContent="space-between">
+          <PlatformIconList platforms={allPlatforms} />
+          <CriticScore score={game.metacritic} />
+        </HStack>
+      </CardBody>
+    </Card>
   );
 }

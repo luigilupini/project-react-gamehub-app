@@ -6,7 +6,7 @@ import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 
 export default function GameGrid() {
-  const { games, isLoading, error } = useGames();
+  const { data: games, isLoading, error } = useGames();
   const skeletonPlaceholder = Array.from({ length: 6 }, (_, i) => i);
   return (
     <div>

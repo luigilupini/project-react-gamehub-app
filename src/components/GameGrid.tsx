@@ -13,9 +13,8 @@ export default function GameGrid() {
       {error && <ErrorMessage message={error} />}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-        spacing={10}
+        spacing={3}
         padding="10px"
-        // padding="10"
       >
         {isLoading &&
           skeletonPlaceholder.map((skeleton) => (

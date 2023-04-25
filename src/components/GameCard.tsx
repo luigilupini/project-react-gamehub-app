@@ -13,7 +13,7 @@ export default function GameCard({ game }: Props) {
     (platform) => platform.platform
   );
   return (
-    <Card>
+    <Card height="100%">
       <Image src={imageCropper(game.background_image)} />
       <CardBody>
         <Heading fontSize="xl">{game.name}</Heading>

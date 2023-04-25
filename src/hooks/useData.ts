@@ -36,7 +36,7 @@ export default function useData<T>(endpoint: string) {
         setIsLoading(false);
       });
     return () => controller.abort(); // 👈🏻 We close/cleanup the controller here
-  }, []);
+  }, [endpoint]);
 
   return { data, isLoading, error };
 }

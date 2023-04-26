@@ -15,15 +15,22 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre: Genre | null) =>
+const useGames = (
+  // Here we passing two parameters to our generic useData hook
+  selectGenre: Genre | null,
+  selectPlatform: Platform | null
+) =>
   useData<Game>(
     'games',
     {
+      // Here we are using the optional chaining operator to avoid errors when
+      // the selectGenre or selectPlatform is null or undefined
       params: {
-        genres: selectedGenre?.id,
+        genres: selectGenre?.id,
+        platforms: selectPlatform?.id,
       },
     },
-    [selectedGenre?.id]
+    [selectGenre?.id, selectPlatform?.id]
   );
 
 export default useGames;

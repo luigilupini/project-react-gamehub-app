@@ -11,11 +11,11 @@ import useGenres, { Genre } from '../hooks/useGenres';
 import imageCropper from '../services/image-crop';
 
 interface Props {
-  setSelectedGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  setSelectGenre: (genre: Genre) => void;
+  selectGenre: Genre | null;
 }
 
-export default function GenreList({ selectedGenre, setSelectedGenre }: Props) {
+export default function GenreList({ selectGenre, setSelectGenre }: Props) {
   const { data: genres, isLoading, error } = useGenres();
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -32,13 +32,11 @@ export default function GenreList({ selectedGenre, setSelectedGenre }: Props) {
               src={imageCropper(genre.image_background)}
             />
             <Button
-              fontWeight={`${
-                selectedGenre?.id === genre.id ? 'bold' : 'normal'
-              }`}
+              fontWeight={`${selectGenre?.id === genre.id ? 'bold' : 'normal'}`}
               fontSize="sm"
               variant="link"
               onClick={() => {
-                setSelectedGenre(genre);
+                setSelectGenre(genre);
               }}
             >
               {genre.name}

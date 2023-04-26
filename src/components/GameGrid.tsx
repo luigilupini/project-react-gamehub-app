@@ -1,17 +1,24 @@
-import ErrorMessage from './ErrorMessage';
-import useGames from '../hooks/useGames';
 import { SimpleGrid } from '@chakra-ui/react';
+
+import ErrorMessage from './ErrorMessage';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
+
 import { Genre } from '../hooks/useGenres';
+import useGames, { Platform } from '../hooks/useGames';
 
 interface Props {
-  selectedGenre: Genre | null;
+  selectGenre: Genre | null;
+  selectPlatform: Platform | null;
 }
 
-export default function GameGrid({ selectedGenre }: Props) {
-  const { data: games, isLoading, error } = useGames(selectedGenre);
+export default function GameGrid({ selectGenre, selectPlatform }: Props) {
+  const {
+    data: games,
+    isLoading,
+    error,
+  } = useGames(selectGenre, selectPlatform);
   const skeletonPlaceholder = Array.from({ length: 6 }, (_, i) => i);
   return (
     <div>
@@ -19,7 +26,7 @@ export default function GameGrid({ selectedGenre }: Props) {
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         spacing={3}
-        padding="10px"
+        paddingY={2}
       >
         {isLoading &&
           skeletonPlaceholder.map((skeleton) => (

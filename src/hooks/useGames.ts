@@ -1,5 +1,5 @@
+import { Query } from '../App';
 import useData from './useData';
-import { Genre } from './useGenres';
 
 export interface Platform {
   id: number;
@@ -15,22 +15,23 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (
-  // Here we passing two parameters to our generic useData hook
-  selectGenre: Genre | null,
-  selectPlatform: Platform | null
-) =>
+const useGames = (query: Query) =>
   useData<Game>(
-    'games',
+    // Argument #1
+    '/games',
+    // Argument #2
     {
-      // Here we are using the optional chaining operator to avoid errors when
-      // the selectGenre or selectPlatform is null or undefined
       params: {
-        genres: selectGenre?.id,
-        platforms: selectPlatform?.id,
+        // Here we are using the optional chaining operator to avoid errors when
+        // the selectGenre or selectPlatform is null or undefined
+        genres: query.genre?.id,
+        platforms: query.platform?.id,
+        // ordering: query.sortOrder,
+        // search: query.searchText
       },
     },
-    [selectGenre?.id, selectPlatform?.id]
+    // Argument #3
+    [query]
   );
 
 export default useGames;

@@ -5,21 +5,16 @@ import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 
-import { Genre } from '../hooks/useGenres';
-import useGames, { Platform } from '../hooks/useGames';
+import useGames from '../hooks/useGames';
+import { Query } from '../App';
 
 interface Props {
-  selectGenre: Genre | null;
-  selectPlatform: Platform | null;
+  query: Query;
 }
 
-export default function GameGrid({ selectGenre, selectPlatform }: Props) {
-  const {
-    data: games,
-    isLoading,
-    error,
-  } = useGames(selectGenre, selectPlatform);
-  const skeletonPlaceholder = Array.from({ length: 6 }, (_, i) => i);
+export default function GameGrid({ query }: Props) {
+  const { data: games, isLoading, error } = useGames(query);
+  const skeletons = Array.from({ length: 20 }, (_, i) => i);
   return (
     <div>
       {error && <ErrorMessage message={error} />}
@@ -29,7 +24,7 @@ export default function GameGrid({ selectGenre, selectPlatform }: Props) {
         paddingY={2}
       >
         {isLoading &&
-          skeletonPlaceholder.map((skeleton) => (
+          skeletons.map((skeleton) => (
             <GameCardContainer key={skeleton}>
               <GameCardSkeleton />
             </GameCardContainer>

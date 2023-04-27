@@ -26,7 +26,7 @@ const useGames = (query: Query) =>
         // the selectGenre or selectPlatform is null or undefined
         genres: query.genre?.id,
         platforms: query.platform?.id,
-        // ordering: query.sortOrder,
+        ordering: query.sortOrder,
         // search: query.searchText
       },
     },

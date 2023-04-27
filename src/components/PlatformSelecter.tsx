@@ -17,23 +17,21 @@ export default function PlatformSelecter({
   const { data, error } = usePlatforms();
   if (error) return null;
   return (
-    <div style={{ paddingBottom: '6px' }}>
-      <Menu>
-        <MenuButton as={Button} rightIcon={<BsChevronDown />} fontSize="sm">
-          {selectPlatform?.name || 'Platforms'}
-        </MenuButton>
-        <MenuList>
-          {data?.map((platform) => (
-            <MenuItem
-              key={platform.id}
-              fontSize="sm"
-              onClick={() => setSelectPlatform(platform)}
-            >
-              {platform.name}
-            </MenuItem>
-          ))}
-        </MenuList>
-      </Menu>
-    </div>
+    <Menu>
+      <MenuButton as={Button} rightIcon={<BsChevronDown />} fontSize="sm">
+        {selectPlatform?.name || 'Platforms'}
+      </MenuButton>
+      <MenuList>
+        {data?.map((platform) => (
+          <MenuItem
+            key={platform.id}
+            fontSize="sm"
+            onClick={() => setSelectPlatform(platform)}
+          >
+            {platform.name}
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
   );
 }

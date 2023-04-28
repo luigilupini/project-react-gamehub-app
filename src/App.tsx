@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Grid, GridItem, HStack, Show } from '@chakra-ui/react';
+import { Flex, Grid, GridItem, HStack, Show } from '@chakra-ui/react';
 
 import Navbar from './components/Navbar';
 import GameGrid from './components/GameGrid';
@@ -49,7 +49,7 @@ function App() {
           </GridItem>
         </Show>
         <GridItem gridArea="main">
-          <HStack spacing={5} marginBottom={5}>
+          <Flex gap={2} marginBottom={5}>
             <PlatformSelecter
               selectPlatform={query.platform}
               // 👇🏻 We spread the current query and overwrite the genre property
@@ -60,7 +60,7 @@ function App() {
               // 👇🏻 We spread the current query and overwrite the genre property
               setSortOrder={(sortOrder) => setQuery({ ...query, sortOrder })}
             />
-          </HStack>
+          </Flex>
           <GameGrid query={query} />
         </GridItem>
       </Grid>

@@ -37,7 +37,7 @@ function App() {
           base: '1fr',
           lg: '200px 1fr',
         }}
-        paddingX={3}
+        paddingX={4}
       >
         <GridItem gridArea="nav">
           <Navbar

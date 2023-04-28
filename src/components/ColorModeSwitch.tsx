@@ -1,5 +1,5 @@
-import { HStack, Switch, Text, useColorMode } from '@chakra-ui/react';
-import { TbMoonStars, TbSun } from 'react-icons/tb';
+import { HStack, Switch, useColorMode } from '@chakra-ui/react';
+import { TbSunFilled, TbMoonFilled } from 'react-icons/tb';
 
 export default function ColorModeSwitch() {
   // `useColorMode` is a React hook that reads from `ColorModeProvider` context
@@ -12,19 +12,19 @@ export default function ColorModeSwitch() {
         lg: '10%',
       }}
     >
-      <Text fontSize="smaller" fontWeight="semibold" whiteSpace="nowrap">
-        {colorMode === 'dark' ? 'Dark' : 'Light'}
-      </Text>
+      <TbSunFilled
+        fontSize={20}
+        color={colorMode === 'dark' ? '#5a5a6b' : '#e08e09'}
+      />
       <Switch
         colorScheme="green"
         isChecked={colorMode === 'dark'}
         onChange={toggleColorMode}
       />
-      {/* {colorMode === 'dark' ? (
-        <TbSun fontSize={20} />
-      ) : (
-        <TbMoonStars fontSize={20} />
-      )} */}
+      <TbMoonFilled
+        fontSize={20}
+        color={colorMode === 'dark' ? '#81e5a4' : '#e5e5e5'}
+      />
     </HStack>
   );
 }

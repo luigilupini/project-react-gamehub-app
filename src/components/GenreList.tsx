@@ -33,13 +33,17 @@ export default function GenreList({ selectGenre, setSelectGenre }: Props) {
             />
             <Button
               fontWeight={`${selectGenre?.id === genre.id ? 'bold' : 'normal'}`}
-              fontSize="sm"
+              fontSize="14px"
               variant="link"
+              whiteSpace="normal"
+              textAlign="left"
               onClick={() => {
                 setSelectGenre(genre);
               }}
             >
-              {genre.name}
+              {genre.name === 'Massively Multiplayer'
+                ? 'Multiplayer'
+                : genre.name}
             </Button>
           </HStack>
         </ListItem>

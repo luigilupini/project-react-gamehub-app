@@ -1,6 +1,6 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { useRef } from 'react';
-import { BsSearch } from 'react-icons/bs';
+import { BiSearch } from 'react-icons/bi';
 
 interface Props {
   setSearchText: (searchText: string) => void;
@@ -19,13 +19,13 @@ export default function SearchInput({ setSearchText }: Props) {
       }}
     >
       <InputGroup>
-        <InputLeftElement children={<BsSearch />} />
+        <InputLeftElement color="gray.500" children={<BiSearch />} />
         <Input
           ref={ref}
+          fontSize="14px"
           borderRadius={20}
           placeholder="Search games..."
           variant="filled"
-          fontSize="sm"
         ></Input>
       </InputGroup>
     </form>

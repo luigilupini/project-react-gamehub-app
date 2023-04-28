@@ -8,7 +8,7 @@ interface Props {
 
 export default function Navbar({ setSearchText }: Props) {
   return (
-    <HStack paddingY={8} gap={2}>
+    <HStack paddingY={6} gap={2}>
       {/* <Image src={logo} boxSize="60px" /> */}
       <Text
         fontWeight="extrabold"

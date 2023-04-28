@@ -10,3 +10,7 @@
   --btn-bg: #1a1a1a;
   --btn-text-hover: #646cff;
 }
+
+form {
+  width: 100%;
+}

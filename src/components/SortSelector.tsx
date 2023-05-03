@@ -6,7 +6,7 @@ interface Props {
   sortOrder: string;
 }
 
-export default function SortSelecter({ sortOrder, setSortOrder }: Props) {
+export default function SortSelector({ sortOrder, setSortOrder }: Props) {
   const sortOrders = [
     { value: '', label: 'Relevance' },
     { value: '-added', label: 'Date added' },

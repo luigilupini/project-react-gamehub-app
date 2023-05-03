@@ -4,12 +4,12 @@ import { Flex, Grid, GridItem, Show } from '@chakra-ui/react';
 import Navbar from './components/Navbar';
 import GameGrid from './components/GameGrid';
 import GenreList from './components/GenreList';
-import PlatformSelecter from './components/PlatformSelecter';
+import PlatformSelector from './components/PlatformSelector';
+import SortSelector from './components/SortSelector';
+import GameHeading from './components/GameHeading';
 
 import { Genre } from './hooks/useGenres';
-import { Platform } from './hooks/useGames';
-import SortSelecter from './components/SortSelecter';
-import GameHeading from './components/GameHeading';
+import { Platform } from './hooks/usePlatforms';
 
 export interface Query {
   genre: Genre | null;
@@ -57,12 +57,12 @@ function App() {
         <GridItem gridArea="main">
           <GameHeading query={query} />
           <Flex gap={2} marginBottom={2}>
-            <PlatformSelecter
+            <PlatformSelector
               selectPlatform={query.platform}
               // 👇🏻 We spread the current query and overwrite the genre property
               setSelectPlatform={(platform) => setQuery({ ...query, platform })}
             />
-            <SortSelecter
+            <SortSelector
               sortOrder={query.sortOrder}
               // 👇🏻 We spread the current query and overwrite the genre property
               setSortOrder={(sortOrder) => setQuery({ ...query, sortOrder })}

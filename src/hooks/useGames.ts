@@ -1,39 +1,37 @@
-import { Query } from '../App';
-import useData from './useData';
+import { useQuery } from '@tanstack/react-query';
+import APIClient, { FetchResponse } from '../services/api-client';
 
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
+import { Query } from '../App';
+import { Platform } from './usePlatforms';
 
 export interface Game {
   id: number;
   name: string;
   background_image: string;
   parent_platforms: { platform: Platform }[];
+  // /* cSpell:disable */
   metacritic: number;
   rating_top: number;
   // rating: number;
 }
 
-const useGames = (query: Query) =>
-  useData<Game>(
-    // Argument #1
-    '/games',
-    // Argument #2
-    {
-      params: {
-        // Here we are using the optional chaining operator to avoid errors when
-        // the selectGenre or selectPlatform is null or undefined
-        genres: query.genre?.id,
-        platforms: query.platform?.id,
-        ordering: query.sortOrder,
-        search: query.searchText,
-      },
-    },
-    // Argument #3
-    [query]
-  );
+const apiClient = new APIClient<Game>('/games');
+
+const useGames = (query: Query) => {
+  const options = {
+    genres: query.genre?.id,
+    parent_platforms: query.platform?.id,
+    ordering: query.sortOrder,
+    search: query.searchText,
+  };
+  return useQuery<FetchResponse<Game>, Error>({
+    queryKey: ['games', query],
+    queryFn: () =>
+      apiClient.readAll({
+        params: options,
+      }),
+    staleTime: 1000 * 60 * 60 * 24, // 1 day
+  });
+};
 
 export default useGames;

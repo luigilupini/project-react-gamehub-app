@@ -16,12 +16,12 @@ interface Props {
 }
 
 export default function GenreList({ selectGenre, setSelectGenre }: Props) {
-  const { data: genres, isLoading, error } = useGenres();
+  const { data, isLoading, error } = useGenres();
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
     <List>
-      {genres.map((genre) => (
+      {data?.results.map((genre) => (
         <ListItem key={genre.id} paddingY="5px">
           <HStack gap={1}>
             <Image
@@ -51,3 +51,38 @@ export default function GenreList({ selectGenre, setSelectGenre }: Props) {
     </List>
   );
 }
+
+/* Typical Approuch to data fetching problems 🤬 (#1)
+
+- No request cacellation when the component unmounts (cleanup)
+- No separation of concerns as our querying logic is leaked into our component
+- No retries on failed requests
+- No auto refreshing "refetching" so we remain in stale view
+- No caching so we are fetching the same data over and over again
+
+```jsx
+const TodoList = () => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    axios
+      .get('https://jsonplaceholder.typicode.com/todos')
+      .then((res) => setTodos(res.data))
+      .catch((error) => setError(error));
+  }, []);
+
+  if (error) return <p>{error}</p>;
+  return (...
+  );
+};
+```
+
+Solution: React Query
+
+A powerful library that helps us with data fetching and caching in React Apps. A
+sound replacement for "async" Redux that is used for fetching and catching data.
+The result is less boilerplate & learning is much lower than Redux. React Query 
+reduces the amount of code we have to introduce, write, debug and maintain.
+
+> Redux is no longer needed (at least for caching) */

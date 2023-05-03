@@ -10,7 +10,7 @@ interface Props {
   setSelectPlatform: (platform: Platform) => void;
 }
 
-export default function PlatformSelecter({
+export default function PlatformSelector({
   selectPlatform,
   setSelectPlatform,
 }: Props) {
@@ -22,7 +22,7 @@ export default function PlatformSelecter({
         {selectPlatform?.name || 'Platforms'}
       </MenuButton>
       <MenuList>
-        {data?.map((platform) => (
+        {data?.results.map((platform) => (
           <MenuItem
             key={platform.id}
             fontSize="sm"

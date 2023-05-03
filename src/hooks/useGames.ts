@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import APIClient, { FetchResponse } from '../services/api-client';
 
 import { Query } from '../App';
 import { Platform } from './usePlatforms';
+import ms from 'ms';
 
 export interface Game {
   id: number;
@@ -18,20 +19,39 @@ export interface Game {
 const apiClient = new APIClient<Game>('/games');
 
 const useGames = (query: Query) => {
-  const options = {
-    genres: query.genre?.id,
-    parent_platforms: query.platform?.id,
-    ordering: query.sortOrder,
-    search: query.searchText,
-  };
-  return useQuery<FetchResponse<Game>, Error>({
+  return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ['games', query],
-    queryFn: () =>
+    queryFn: ({ pageParam }) =>
       apiClient.readAll({
-        params: options,
+        params: {
+          genres: query.genreId,
+          parent_platforms: query.platformId,
+          ordering: query.sortOrder,
+          search: query.searchText,
+          page: pageParam,
+        },
       }),
-    staleTime: 1000 * 60 * 60 * 24, // 1 day
+    staleTime: ms('24h'),
+    getNextPageParam: (lastPage, allPages) => {
+      // 👇🏻 If the last page has no results there are no more pages to fetch.
+      if (lastPage.results.length === 0) return false;
+      // Otherwise we return the next page number.
+      return allPages.length + 1;
+    },
   });
 };
 
 export default useGames;
+
+/* PAGINATION & INFINITE SCROLLING
+`useInfiniteQuery` is a powerful hook provided by (RQ) to handle pagination and
+infinite scroll scenarios. The `getNextPageParam` function is used to determine
+how to fetch the next page of data, based on the current data. 
+
+`getNextPageParam` is a callback function that receives the `lastPage` (the most
+recently fetched page) and all the `pages` fetched so far. It should return the
+value that should be used as the `pageParam` for the next query, or undefined if
+there are no more pages to fetch. 
+
+Here's an example of how to use `useInfiniteQuery` with a getNextPageParam:
+*/

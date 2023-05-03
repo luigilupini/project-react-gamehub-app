@@ -2,6 +2,7 @@ import platforms from '../data/platforms';
 
 import { useQuery } from '@tanstack/react-query';
 import APIClient from '../services/api-client';
+import ms from 'ms';
 
 export interface Platform {
   id: number;
@@ -15,7 +16,7 @@ const usePlatforms = () => {
   return useQuery({
     queryKey: ['platforms'],
     queryFn: apiClient.readAll,
-    staleTime: 24 * 60 * 60 * 1000, // 1 day
+    staleTime: ms('24h'),
     initialData: { count: platforms.length, results: platforms },
   });
 };

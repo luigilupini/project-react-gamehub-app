@@ -8,24 +8,16 @@ import PlatformSelector from './components/PlatformSelector';
 import SortSelector from './components/SortSelector';
 import GameHeading from './components/GameHeading';
 
-import { Genre } from './hooks/useGenres';
-import { Platform } from './hooks/usePlatforms';
-
 export interface Query {
-  genre: Genre | null;
-  platform: Platform | null;
+  genreId: number | undefined;
+  platformId: number | undefined;
   sortOrder: string;
   searchText: string;
 }
 
 function App() {
-  const [query, setQuery] = useState<Query>({
-    genre: null,
-    platform: null,
-    sortOrder: '',
-    searchText: '',
-  } as Query);
-
+  const [query, setQuery] = useState<Query>({} as Query);
+  // console.log(query);
   return (
     <>
       <Grid
@@ -48,9 +40,11 @@ function App() {
         <Show above="lg">
           <GridItem gridArea="aside">
             <GenreList
-              selectGenre={query.genre}
+              selectGenreId={query.genreId}
               // 👇🏻 We spread the current query and overwrite the genre property
-              setSelectGenre={(genre) => setQuery({ ...query, genre })}
+              setSelectGenre={(genre) =>
+                setQuery({ ...query, genreId: genre.id })
+              }
             />
           </GridItem>
         </Show>
@@ -58,9 +52,11 @@ function App() {
           <GameHeading query={query} />
           <Flex gap={2} marginBottom={2}>
             <PlatformSelector
-              selectPlatform={query.platform}
+              selectPlatformId={query.platformId}
               // 👇🏻 We spread the current query and overwrite the genre property
-              setSelectPlatform={(platform) => setQuery({ ...query, platform })}
+              setSelectPlatform={(platform) =>
+                setQuery({ ...query, platformId: platform.id })
+              }
             />
             <SortSelector
               sortOrder={query.sortOrder}

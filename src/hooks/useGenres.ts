@@ -1,3 +1,4 @@
+import ms from 'ms';
 import genres from '../data/genres';
 import { useQuery } from '@tanstack/react-query';
 import APIClient from '../services/api-client';
@@ -27,8 +28,8 @@ effects variables for capturing API data, errors, or loading state. 🥳 */
 
 const apiClient = new APIClient<Genre>('/genres');
 
-const useGenres = () =>
-  useQuery({
+const useGenres = () => {
+  return useQuery({
     // 👇🏻 We pass a key to the query hook to cache the data and identify it in
     // the cache. The key is a unique identifier for this query. We can pass an
     // array of keys to the query hook to cache multiple queries.
@@ -41,11 +42,12 @@ const useGenres = () =>
     // 👇🏻 We can pass a stale time to the query hook to prevent unnecessary
     // refetching of data. This is useful when we want to prevent the UI from
     // updating too frequently in response to data changes.
-    staleTime: 1000 * 60 * 60 * 24 * 1, // 'genres' data is value for a 1 day
+    staleTime: ms('24h'),
     // 👇🏻 We can also pass initial data to the query hook to avoid loading
     // state when the component mounts for the first time.
     initialData: { count: genres.length, results: genres },
   });
+};
 
 export default useGenres;
 

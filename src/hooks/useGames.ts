@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import APIClient, { FetchResponse } from '../services/api-client';
 
-import { Query } from '../App';
 import { Platform } from './usePlatforms';
 import ms from 'ms';
+import useGameQueryStore from '../store';
 
 export interface Game {
   id: number;
@@ -18,7 +18,14 @@ export interface Game {
 
 const apiClient = new APIClient<Game>('/games');
 
-const useGames = (query: Query) => {
+// USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
+// Now that you've created a store access it via the custom hook in a component.
+// You can access the store state being count, increment, & decrement properties
+// from your component globally, without prop drilling.
+const useGames = () => {
+  // Selectors gets the current state & only a specific property from our store.
+  // Now our component only rerenders when that specific property changes!
+  const query = useGameQueryStore((state) => state.query);
   return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ['games', query],
     queryFn: ({ pageParam }) =>

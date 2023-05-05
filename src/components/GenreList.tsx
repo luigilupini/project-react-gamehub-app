@@ -6,17 +6,21 @@ import {
   ListItem,
   Spinner,
 } from '@chakra-ui/react';
-import useGenres, { Genre } from '../hooks/useGenres';
+import useGenres from '../hooks/useGenres';
 
 import imageCropper from '../services/image-crop';
+import useGameQueryStore from '../store';
 
-interface Props {
-  setSelectGenre: (genre: Genre) => void;
-  selectGenreId?: number | null;
-}
-
-export default function GenreList({ selectGenreId, setSelectGenre }: Props) {
+// USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
+// Now that you've created a store access it via the custom hook in a component.
+// You can access the store state being count, increment, & decrement properties
+// from your component globally, without prop drilling.
+export default function GenreList() {
   const { data, isLoading, error } = useGenres();
+  // Selectors gets the current state & only a specific property from our store.
+  // Now our component only rerenders when that specific property changes!
+  const query = useGameQueryStore((state) => state.query);
+  const setGenreId = useGameQueryStore((state) => state.setGenreId);
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
@@ -32,13 +36,13 @@ export default function GenreList({ selectGenreId, setSelectGenre }: Props) {
               src={imageCropper(genre.image_background)}
             />
             <Button
-              fontWeight={`${selectGenreId === genre.id ? 'bold' : 'normal'}`}
+              fontWeight={`${query.genreId === genre.id ? 'bold' : 'normal'}`}
               fontSize="14px"
               variant="link"
               whiteSpace="normal"
               textAlign="left"
               onClick={() => {
-                setSelectGenre(genre);
+                setGenreId(genre.id);
               }}
             >
               {genre.name === 'Massively Multiplayer'
@@ -52,9 +56,9 @@ export default function GenreList({ selectGenreId, setSelectGenre }: Props) {
   );
 }
 
-/* Typical Approuch to data fetching problems 🤬 (#1)
+/* Typical Approach to data fetching problems 🤬 (#1)
 
-- No request cacellation when the component unmounts (cleanup)
+- No request cancellation when the component unmounts (cleanup)
 - No separation of concerns as our querying logic is leaked into our component
 - No retries on failed requests
 - No auto refreshing "refetching" so we remain in stale view

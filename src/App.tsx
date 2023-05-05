@@ -1,23 +1,13 @@
-import { useState } from 'react';
 import { Flex, Grid, GridItem, Show } from '@chakra-ui/react';
 
-import Navbar from './components/Navbar';
 import GameGrid from './components/GameGrid';
+import GameHeading from './components/GameHeading';
 import GenreList from './components/GenreList';
+import Navbar from './components/Navbar';
 import PlatformSelector from './components/PlatformSelector';
 import SortSelector from './components/SortSelector';
-import GameHeading from './components/GameHeading';
-
-export interface Query {
-  genreId: number | undefined;
-  platformId: number | undefined;
-  sortOrder: string;
-  searchText: string;
-}
 
 function App() {
-  const [query, setQuery] = useState<Query>({} as Query);
-  // console.log(query);
   return (
     <>
       <Grid
@@ -32,39 +22,20 @@ function App() {
         paddingX={4}
       >
         <GridItem gridArea="nav">
-          <Navbar
-            // 👇🏻 We spread the current query and overwrite the genre property
-            setSearchText={(searchText) => setQuery({ ...query, searchText })}
-          />
+          <Navbar />
         </GridItem>
         <Show above="lg">
           <GridItem gridArea="aside">
-            <GenreList
-              selectGenreId={query.genreId}
-              // 👇🏻 We spread the current query and overwrite the genre property
-              setSelectGenre={(genre) =>
-                setQuery({ ...query, genreId: genre.id })
-              }
-            />
+            <GenreList />
           </GridItem>
         </Show>
         <GridItem gridArea="main">
-          <GameHeading query={query} />
+          <GameHeading />
           <Flex gap={2} marginBottom={2}>
-            <PlatformSelector
-              selectPlatformId={query.platformId}
-              // 👇🏻 We spread the current query and overwrite the genre property
-              setSelectPlatform={(platform) =>
-                setQuery({ ...query, platformId: platform.id })
-              }
-            />
-            <SortSelector
-              sortOrder={query.sortOrder}
-              // 👇🏻 We spread the current query and overwrite the genre property
-              setSortOrder={(sortOrder) => setQuery({ ...query, sortOrder })}
-            />
+            <PlatformSelector />
+            <SortSelector />
           </Flex>
-          <GameGrid query={query} />
+          <GameGrid />
         </GridItem>
       </Grid>
     </>

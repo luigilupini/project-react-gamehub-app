@@ -2,20 +2,24 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 
 import { BsChevronDown } from 'react-icons/bs';
 
-import usePlatforms, { Platform } from '../hooks/usePlatforms';
+import usePlatforms from '../hooks/usePlatforms';
+import useGameQueryStore from '../store';
 
-interface Props {
-  selectPlatformId: number | undefined;
-  setSelectPlatform: (platform: Platform) => void;
-}
-
-export default function PlatformSelector({
-  selectPlatformId,
-  setSelectPlatform,
-}: Props) {
+// USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
+// Now that you've created a store access it via the custom hook in a component.
+// You can access the store state being count, increment, & decrement properties
+// from your component globally, without prop drilling.
+export default function PlatformSelector() {
   const { data, error } = usePlatforms();
-  const selectedPlatform = data?.results.find((p) => p.id === selectPlatformId);
+
+  // Selectors gets the current state & only a specific property from our store.
+  // Now our component only rerenders when that specific property changes!
+  const platformId = useGameQueryStore((state) => state.query.platformId);
+  const setPlatformId = useGameQueryStore((state) => state.setPlatformId);
+  const selectedPlatform = data?.results.find((p) => p.id === platformId);
+
   if (error) return null;
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />} fontSize="sm">
@@ -26,7 +30,7 @@ export default function PlatformSelector({
           <MenuItem
             key={platform.id}
             fontSize="sm"
-            onClick={() => setSelectPlatform(platform)}
+            onClick={() => setPlatformId(platform.id)}
           >
             {platform.name}
           </MenuItem>

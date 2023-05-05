@@ -8,15 +8,10 @@ import GameCardSkeleton from './GameCardSkeleton';
 import GameCardContainer from './GameCardContainer';
 
 import useGames from '../hooks/useGames';
-import { Query } from '../App';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-interface Props {
-  query: Query;
-}
-
-export default function GameGrid({ query }: Props) {
+export default function GameGrid() {
   const {
     data,
     isLoading,
@@ -24,7 +19,7 @@ export default function GameGrid({ query }: Props) {
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
-  } = useGames(query);
+  } = useGames();
 
   const skeletons = Array.from({ length: 20 }, (_, i) => i);
   if (error) return <ErrorMessage message={error.message} />;

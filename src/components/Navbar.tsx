@@ -2,11 +2,7 @@ import { HStack, Text } from '@chakra-ui/react';
 import ColorModeSwitch from './ColorModeSwitch';
 import SearchInput from './SearchInput';
 
-interface Props {
-  setSearchText: (searchText: string) => void;
-}
-
-export default function Navbar({ setSearchText }: Props) {
+export default function Navbar() {
   return (
     <HStack paddingY={6} gap={2}>
       {/* <Image src={logo} boxSize="60px" /> */}
@@ -19,7 +15,7 @@ export default function Navbar({ setSearchText }: Props) {
       >
         R A W G
       </Text>
-      <SearchInput setSearchText={setSearchText} />
+      <SearchInput />
       <ColorModeSwitch />
     </HStack>
   );

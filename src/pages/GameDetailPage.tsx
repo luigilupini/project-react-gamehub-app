@@ -5,7 +5,8 @@
 
 import { useParams } from 'react-router-dom';
 import useGame from '../hooks/useGame';
-import { Heading, Spinner, Text } from '@chakra-ui/react';
+import { Heading, Spinner } from '@chakra-ui/react';
+import ExpandableText from '../components/ExpandableText';
 
 // * useParams
 // React Router v6 provides a new way to pass data to a route component. We can
@@ -34,7 +35,7 @@ export default function GameDetailPage() {
   return (
     <>
       <Heading>{data?.name}</Heading>
-      <Text>{data?.description_raw}</Text>
+      <ExpandableText>{data?.description_raw}</ExpandableText>
     </>
   );
 }

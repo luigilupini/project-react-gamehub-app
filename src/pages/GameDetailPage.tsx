@@ -3,10 +3,11 @@
 // available and passed to the URL. We have helpful hooks 🪝 to get info about a
 // current route/path that the client is navigated toward.
 
-import { useParams } from 'react-router-dom';
-import useGame from '../hooks/useGame';
 import { Heading, Spinner } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 import ExpandableText from '../components/ExpandableText';
+import GameAttributes from '../components/GameAttributes';
+import useGame from '../hooks/useGame';
 
 // * useParams
 // React Router v6 provides a new way to pass data to a route component. We can
@@ -36,6 +37,7 @@ export default function GameDetailPage() {
     <>
       <Heading>{data?.name}</Heading>
       <ExpandableText>{data?.description_raw}</ExpandableText>
+      <GameAttributes game={data} />
     </>
   );
 }

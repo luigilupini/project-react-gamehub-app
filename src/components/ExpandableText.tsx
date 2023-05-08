@@ -21,7 +21,7 @@ export default function ExpandableText({ children }: Props) {
         ml={2}
         size="xs"
         fontWeight="bold"
-        // colorScheme="green"
+        colorScheme="yellow"
         onClick={() => setExpanded(!expanded)}
       >
         {expanded ? 'Read Less' : 'Read More'}

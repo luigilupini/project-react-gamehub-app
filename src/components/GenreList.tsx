@@ -24,7 +24,7 @@ export default function GenreList() {
   if (error) return null;
   if (isLoading) return <Spinner />;
   return (
-    <List>
+    <List marginTop={2}>
       {data?.results.map((genre) => (
         <ListItem key={genre.id} paddingY="5px">
           <HStack gap={1}>

@@ -1,6 +1,7 @@
 import { HStack, Text } from '@chakra-ui/react';
 import ColorModeSwitch from './ColorModeSwitch';
 import SearchInput from './SearchInput';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
@@ -13,7 +14,7 @@ export default function Navbar() {
         letterSpacing={2}
         border={2}
       >
-        R A W G
+        <Link to="/">R A W G</Link>
       </Text>
       <SearchInput />
       <ColorModeSwitch />

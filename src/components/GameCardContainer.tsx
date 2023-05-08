@@ -12,12 +12,10 @@ export default function GameCardContainer({ children }: Props) {
       overflow="hidden"
       width="100%"
       shadow="md"
-      // transition="all 0.2s ease-in-out"
-      // _hover={{
-      //   transform: 'scale(0.98)',
-      //   border: '2px solid',
-      //   borderColor: '#FFD700',
-      // }}
+      _hover={{
+        transform: 'scale(0.98)',
+        transition: 'transform 0.2s ease-in',
+      }}
     >
       {children}
     </Box>

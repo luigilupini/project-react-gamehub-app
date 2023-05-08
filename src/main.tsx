@@ -6,20 +6,28 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 
-import App from './App.tsx';
-
 import theme from './theme.ts';
 import './index.css';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes.tsx';
 
 const queryClient = new QueryClient();
 
+// USE ROUTER PROVIDER COMPONENT (STEP 2) ⭐️
+// All data `router` objects are passed to this component to render your App and
+// enable the rest of the data APIs. This provider component "provides" context
+// for sharing the `router` via router prop to the rest of the application. This
+// allows us to use hooks like `useRoutes` & `useNavigate` anywhere in our app.
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     {/* cSpell:disable */}
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={queryClient}>
-        <App />
+        {/* So instead of rendering a specific component like the App component,
+        rather we render the `RouterProvider` & let it determine based on routing
+        what component needs to be called based on the users path location. */}
+        <RouterProvider router={router} />
         <ReactQueryDevtools />
       </QueryClientProvider>
     </ChakraProvider>

@@ -11,7 +11,7 @@ export default function GameTrailer({ gameId }: Props) {
   if (error || !data) throw error;
 
   const content = data?.results[0];
-  console.log(content);
+  // console.log(content);
   return content ? (
     <video src={content?.data[480]} poster={content?.preview} controls />
   ) : null;

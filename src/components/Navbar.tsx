@@ -14,7 +14,7 @@ export default function Navbar() {
         letterSpacing={2}
         border={2}
       >
-        <Link to="/">R A W G</Link>
+        <a href="/">R A W G</a>
       </Text>
       <SearchInput />
       <ColorModeSwitch />

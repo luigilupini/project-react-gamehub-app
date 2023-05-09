@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import useGenres from '../hooks/useGenres';
 
-import imageCropper from '../services/image-crop';
+import imageCropper from '../services/image-cropper';
 import useGameQueryStore from '../store';
 
 // USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️

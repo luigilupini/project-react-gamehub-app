@@ -1,7 +1,7 @@
 import { Game } from '../interfaces/Game';
 import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
-import imageCropper from '../services/image-crop';
+import imageCropper from '../services/image-cropper';
 
 import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react';
 import Rating from './Rating';

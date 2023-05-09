@@ -15,7 +15,7 @@ export default function ExpandableText({ children }: Props) {
   // expand the text. We use the `expanded` state to toggle the text.
   const summary = expanded ? children : `${children.slice(0, limit)}...`;
   return (
-    <Text>
+    <Text paddingTop={3}>
       {summary}
       <Button
         ml={2}

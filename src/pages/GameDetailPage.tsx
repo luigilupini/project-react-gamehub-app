@@ -3,11 +3,13 @@
 // available and passed to the URL. We have helpful hooks 🪝 to get info about a
 // current route/path that the client is navigated toward.
 
-import { Heading, Spinner } from '@chakra-ui/react';
+import { GridItem, Heading, SimpleGrid, Spinner } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import ExpandableText from '../components/ExpandableText';
 import GameAttributes from '../components/GameAttributes';
 import useGame from '../hooks/useGame';
+import GameTrailer from '../components/GameTrailer';
+import GameScreenShots from '../components/GameScreenShots';
 
 // * useParams
 // React Router v6 provides a new way to pass data to a route component. We can
@@ -34,10 +36,23 @@ export default function GameDetailPage() {
   if (isLoading) return <Spinner />;
   if (error || !data) throw error;
   return (
-    <>
-      <Heading>{data?.name}</Heading>
-      <ExpandableText>{data?.description_raw}</ExpandableText>
-      <GameAttributes game={data} />
-    </>
+    <SimpleGrid
+      columns={{
+        base: 1,
+        md: 2,
+      }}
+      spacing={5}
+      marginTop={6}
+    >
+      <GridItem>
+        <Heading>{data?.name}</Heading>
+        <ExpandableText>{data?.description_raw}</ExpandableText>
+        <GameAttributes game={data} />
+      </GridItem>
+      <GridItem>
+        <GameTrailer gameId={data.id} />
+        <GameScreenShots gameId={data.id} />
+      </GridItem>
+    </SimpleGrid>
   );
 }

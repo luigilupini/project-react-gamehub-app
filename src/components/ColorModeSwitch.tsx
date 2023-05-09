@@ -9,7 +9,7 @@ export default function ColorModeSwitch() {
     <HStack
       paddingLeft={{
         base: 0,
-        lg: '10%',
+        // lg: '10%',
       }}
     >
       <TbSunFilled

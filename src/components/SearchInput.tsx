@@ -1,20 +1,26 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { BiSearch } from 'react-icons/bi';
+import useGameQueryStore from '../store';
+import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  setSearchText: (searchText: string) => void;
-}
-
-export default function SearchInput({ setSearchText }: Props) {
+// USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
+// Now that you've created a store access it via the custom hook in a component.
+// You can access the store state being count, increment, & decrement properties
+// from your component globally, without prop drilling.
+export default function SearchInput() {
   const ref = useRef<HTMLInputElement>(null);
+  // Selectors gets the current state & only a specific property from our store.
+  // Now our component only rerenders when that specific property changes!
+  const setSearchText = useGameQueryStore((state) => state.setSearchText);
+  const navigate = useNavigate();
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
         if (ref.current) {
-          console.log(ref.current.value);
           setSearchText(ref.current.value);
+          navigate('/');
         }
       }}
     >

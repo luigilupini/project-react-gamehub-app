@@ -1,4 +1,3 @@
-import { Platform } from '../hooks/useGames';
 import { HStack, Icon } from '@chakra-ui/react';
 import {
   FaWindows,
@@ -12,6 +11,8 @@ import { BsGlobe } from 'react-icons/bs';
 import { MdPhoneIphone } from 'react-icons/md';
 import { SiNintendo } from 'react-icons/si';
 import { IconType } from 'react-icons';
+
+import Platform from '../interfaces/Platform';
 
 interface Props {
   platforms: Platform[]; // 👈🏻 An array of Platform objects

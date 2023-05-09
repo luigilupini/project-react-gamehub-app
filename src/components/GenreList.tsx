@@ -11,7 +11,7 @@ import useGenres from '../hooks/useGenres';
 import imageCropper from '../services/image-cropper';
 import useGameQueryStore from '../store';
 
-// USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
+// ZUSTAND: USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
 // Now that you've created a store access it via the custom hook in a component.
 // You can access the store state being count, increment, & decrement properties
 // from your component globally, without prop drilling.

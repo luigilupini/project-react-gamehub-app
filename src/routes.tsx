@@ -3,7 +3,7 @@ import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import GameDetailPage from './pages/GameDetailPage';
 
-// CREATE A BROWSER ROUTER INSTANCE WITH ROUTES (STEP 2) ⭐️
+// REACT ROUTER: CREATE A BROWSER ROUTER INSTANCE WITH ROUTES (STEP 2) ⭐️
 // This is the recommended router for all React Router web projects. It uses the
 // DOM History API to update the URL and manage the history stack. Enabling the
 // v6.4 data APIs like loaders, actions, fetchers and more.
@@ -12,7 +12,7 @@ import { createBrowserRouter } from 'react-router-dom';
 // With `createBrowserRouter` we define a `routes` array of Route objects that
 // can have nested routes on the `children` property.
 const router = createBrowserRouter([
-  // NESTED ROUTES REQUIRES A NESTED STRUCTURE (STEP 3) ⭐️
+  // REACT ROUTER: NESTED ROUTES REQUIRES A NESTED STRUCTURE (STEP 3) ⭐️
   // We can nest routes by defining a `children` property on a route object. In
   // real world apps we typically have a `Layout` component that has default UI
   // elements to render on every route/page like a `Navbar`, `Auth` etc. Layout
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
-      // PASSING DATA WITH ROUTE PARAMETERS (STEP 4) ⭐️
+      // REACT ROUTER: PASSING DATA WITH ROUTE PARAMETERS (STEP 4) ⭐️
       // React Router v6 provides a new way to pass data to a route component. We
       // can pass data to a route component using route parameters. By using a `:`
       // prefix in the route path. Now the `id` parameter will be available in the

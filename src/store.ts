@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-// DEFINE SHAPE OF STORE (STEP 1) ⭐️
+// ZUSTAND: DEFINE SHAPE OF STORE (STEP 1) ⭐️
 // First we define the shape/type of our this store
 interface Query {
   genreId?: number;
@@ -8,7 +8,7 @@ interface Query {
   sortOrder?: string;
   searchText?: string;
 }
-// DEFINE SHAPE OF STORE (STEP 1) ⭐️
+// ZUSTAND: DEFINE SHAPE OF STORE (STEP 1) ⭐️
 // First we define the shape/type of our this store
 interface GameQueryStore {
   // This is the initial state of the store and we can use `set` to update it.
@@ -22,7 +22,7 @@ interface GameQueryStore {
   setSortOrder: (sortOrder: string) => void;
 }
 
-// CREATE THE STORE AND INITIAL STATE (STEP 2) ⭐️
+// ZUSTAND: CREATE THE STORE AND INITIAL STATE (STEP 2) ⭐️
 const useGameQueryStore = create<GameQueryStore>((set) => {
   return {
     query: {},

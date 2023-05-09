@@ -34,7 +34,7 @@ export default function GameCard({ game }: Props) {
   );
 }
 
-/* # LINK COMPONENT EXPLAINED (STEP 2) ⭐️
+/* REACT ROUTER: LINK COMPONENT EXPLAINED (STEP 2) ⭐️
 The <Link> component is essentially a wrapper around the HTML <a> tag, with some
 additional functionality. It takes care of updating the URL in a browser address
 bar and tells React Router to render a appropriate component for that new route. 

@@ -5,7 +5,7 @@ import APIClient from '../services/api-client';
 
 import Genre from '../interfaces/Genre';
 
-/* React Query Introduction 😇 (#3)
+/* REACT QUERY: INTRODUCTION (STEP 3) 😇
 We are going to use the `useQuery` hook to fetch data from an API. A `useQuery`
 hook takes a key and a function that returns a promise. The key is used to cache
 the data and is a unique identifier. Each time we retrieve data from a backend, 
@@ -47,7 +47,7 @@ const useGenres = () => {
 
 export default useGenres;
 
-/* # React Query Overview
+/* REACT QUERY: OVERVIEW
 React Query is a powerful data-fetching and state management library for React
 applications. It helps you manage server state in your React applications by
 handling caching, background fetching, and automatic refetching of data. With

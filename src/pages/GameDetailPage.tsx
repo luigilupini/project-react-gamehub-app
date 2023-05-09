@@ -1,4 +1,4 @@
-// GETTING DATA FROM CURRENT ROUTE WITH HOOKS (STEP 5) ⭐️
+// REACT ROUTER: GETTING DATA FROM CURRENT ROUTE WITH HOOKS (STEP 5) ⭐️
 // Sometimes we need to know what route/page we on or what route parameters are
 // available and passed to the URL. We have helpful hooks 🪝 to get info about a
 // current route/path that the client is navigated toward.

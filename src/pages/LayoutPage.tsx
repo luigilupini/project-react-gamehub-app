@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import Navbar from '../components/Navbar';
 
-// SUPPLY GENERAL LAYOUT IN PAGES FOLDER (STEP 1) ⭐️
+// REACT ROUTER: SUPPLY GENERAL LAYOUT IN PAGES FOLDER (STEP 1) ⭐️
 // Within the `src/pages` folder, create a file called `Layout.tsx` file and add
 // the following code to make it the main layout for all pages:
 import { Outlet } from 'react-router-dom';
@@ -17,7 +17,7 @@ export default function LayoutPage() {
   );
 }
 
-/* NESTED ROUTES SUPPORTED BY USING AN OUTLET COMPONENT (STEP 3) ⭐️
+/* REACT ROUTER: NESTED ROUTES SUPPORTED BY AN OUTLET COMPONENT (STEP 3) ⭐️
 Nested routes in React Router allow you to create hierarchical routing structure
 in your application, where child routes are rendered within their parent routes.
 This is useful for organizing complex Apps with multiple levels of navigation.

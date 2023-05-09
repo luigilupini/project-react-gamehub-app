@@ -8,7 +8,7 @@ import Game from '../interfaces/Game';
 
 const apiClient = new APIClient<Game>('/games');
 
-// USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
+// ZUSTAND: USE CUSTOM HOOK IN CONSUMER (STEP 3) ⭐️
 // Now that you've created a store access it via the custom hook in a component.
 // You can access the store state being count, increment, & decrement properties
 // from your component globally, without prop drilling.
@@ -40,7 +40,7 @@ const useGames = () => {
 
 export default useGames;
 
-/* PAGINATION & INFINITE SCROLLING
+/* REACT QUERY: PAGINATION & INFINITE SCROLLING
 `useInfiniteQuery` is a powerful hook provided by (RQ) to handle pagination and
 infinite scroll scenarios. The `getNextPageParam` function is used to determine
 how to fetch the next page of data, based on the current data. 
@@ -48,7 +48,4 @@ how to fetch the next page of data, based on the current data.
 `getNextPageParam` is a callback function that receives the `lastPage` (the most
 recently fetched page) and all the `pages` fetched so far. It should return the
 value that should be used as the `pageParam` for the next query, or undefined if
-there are no more pages to fetch. 
-
-Here's an example of how to use `useInfiniteQuery` with a getNextPageParam:
-*/
+there are no more pages to fetch. */

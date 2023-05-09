@@ -13,7 +13,7 @@ import router from './routes.tsx';
 
 const queryClient = new QueryClient();
 
-// USE ROUTER PROVIDER COMPONENT (STEP 2) ⭐️
+// REACT ROUTER: USE ROUTER PROVIDER COMPONENT (STEP 2) ⭐️
 // All data `router` objects are passed to this component to render your App and
 // enable the rest of the data APIs. This provider component "provides" context
 // for sharing the `router` via router prop to the rest of the application. This
@@ -34,7 +34,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   </React.StrictMode>
 );
 
-/* React Query Introduction 🤩 (#2)
+/* REACT QUERY: WHY WE NEED IT? (STEP 2) 🤩
 - React Query is a data fetching library for React
 - It provides hooks for fetching, caching, updating asynchronous data in React
 - Alternative state management libraries to Redux, MobX etc...
@@ -102,7 +102,7 @@ Overview of some default options you can configure for `QueryClient`:
 hooks with the `QueryClient` instance. We passing it to our component tree. We
 pass the `QueryClient` instance to the `QueryClientProvider` client prop. */
 
-/* React Query Devtools 🤩 (#4)
+/* REACT QUERY: DEVTOOLS (STEP 4) 🤩
 A development tool that comes with the React Query library. It provides a user
 interface for inspecting and debugging the queries, mutations, and cache data
 within your React application.

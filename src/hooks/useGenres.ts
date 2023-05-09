@@ -2,7 +2,8 @@ import ms from 'ms';
 import genres from '../data/genres';
 import { useQuery } from '@tanstack/react-query';
 import APIClient from '../services/api-client';
-import { Genre } from '../interfaces/Genre';
+
+import Genre from '../interfaces/Genre';
 
 /* React Query Introduction 😇 (#3)
 We are going to use the `useQuery` hook to fetch data from an API. A `useQuery`
